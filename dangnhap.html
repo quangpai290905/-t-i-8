@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Đăng Nhập Tài Khoản</title>
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    /* Centering and styling */
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #eff3f4;
+      font-family: "Source Sans Pro", sans-serif;
+    }
+    form {
+      width: 100%;
+      max-width: 400px;
+      background-color: #fff;
+      padding: 2.25em;
+      border: solid 1px #ddd;
+      border-radius: 0.5em;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+    .inputGroup {
+      margin-bottom: 1.5em;
+      text-align: left;
+    }
+    label {
+      font-size: 1.25em;
+      color: #217093;
+      font-weight: 700;
+      margin-bottom: 0.5em;
+      display: block;
+    }
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 0.875em;
+      background-color: #f3fafd;
+      border: solid 2px #217093;
+      border-radius: 4px;
+      font-size: 1.15em;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      padding: 0.75em;
+      background-color: #4eb8dd;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      font-size: 1.25em;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 1em;
+    }
+    button:hover {
+      background-color: #217093;
+    }
+  </style>
+</head>
+<body>
+
+<form id="loginForm">
+  <h2>Đăng Nhập</h2>
+
+  <!-- Email Input -->
+  <div class="inputGroup">
+    <label for="loginEmail">Email</label>
+    <input type="email" id="loginEmail" placeholder="Nhập email của bạn" required>
+  </div>
+
+  <!-- Password Input -->
+  <div class="inputGroup">
+    <label for="loginPassword">Mật Khẩu</label>
+    <input type="password" id="loginPassword" placeholder="Nhập mật khẩu" required>
+  </div>
+
+  <!-- Login Button -->
+  <button type="submit">Đăng Nhập</button>
+  <!-- Link to Register -->
+  <p>Bạn chưa có tài khoản? <a href="dangki.html">Đăng kí ngay</a></p>
+</form>
+
+<script>
+  // Toggle password visibility
+  document.getElementById("showPasswordCheck")?.addEventListener("change", function() {
+    const passwordInput = document.getElementById("loginPassword");
+    passwordInput.type = this.checked ? "text" : "password";
+  });
+
+  // Login form submission handling with role checking
+  document.getElementById("loginForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const email = document.getElementById("loginEmail").value.trim();
+    const password = document.getElementById("loginPassword").value.trim();
+
+    // Check roles based on email
+    if (email === "visitor@gmail.com") {
+      alert("Bạn đã đăng nhập thành công với quyền: Visitor");
+      window.location.href = "visitor_dashboard.html";
+    } else if (email === "user@gmail.com") {
+      alert("Bạn đã đăng nhập thành công với quyền: User");
+      window.location.href = "user_dashboard.html";
+    } else if (email === "admin@gmail.com") {
+      alert("Bạn đã đăng nhập thành công với quyền: Admin");
+      window.location.href = "admin_dashboard.html";
+    } else {
+      alert("Email không được phép. Vui lòng kiểm tra lại.");
+      return;
+    }
+
+    // Redirect to hmyh.html after a slight delay
+    setTimeout(function() {
+      window.location.href = "hmyh.html";
+    }, 2000); // 2-second delay for role-specific page view
+  });
+</script>
+
+</body>
+</html>
